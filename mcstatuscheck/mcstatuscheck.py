@@ -14,4 +14,5 @@ class MCStatusCheck(commands.Cog):
         server = JavaServer.lookup(server_ip);
         latency = server.ping()
         print(f"The server replied in {latency} ms")
+        SEmbed = discord.Embed(title = 'Players Online',description = "```yaml\n" + latency + "\n```",colour=discord.Color.from_rgb(21,244,238))
         await ctx.send(f"The server replied in {latency} ms")
