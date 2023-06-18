@@ -1,7 +1,7 @@
 from redbot.core import commands
 from mcstatus import JavaServer
 
-class MCStatus(commands.Cog):
+class MCStatusCheck(commands.Cog):
     """My custom cog"""
 
     def __init__(self, bot):
