@@ -23,17 +23,10 @@ class MCStatusCheck(commands.Cog):
 
     @commands.command()
     async def players(self, ctx, server_ip: str):
-        server = JavaServer.lookup(server_ip);
-        SEmbed = discord.Embed(description = "```diff\n-NO PLAYERS ONLINE-\n```",colour=discord.Color.from_rgb(255,0,0))
+        server = JavaServer.lookup(server_ip);        
         try:
-            query = server.query()
-            if query.players.names:
-                SEmbed = discord.Embed(title = 'Players Online',description = "```yaml\n" + "\n".join(query.players.names) + "\n```",colour=discord.Color.from_rgb(21,244,238))
+            status = server.status()
+            SEmbed = discord.Embed(title = 'Players Online',description = "```yaml\n" + "\n".join([player.name for player in status.players.sample]) + "\n```",colour=discord.Color.from_rgb(21,244,238))
         except:
-            try:
-                status = server.status()
-                SEmbed = discord.Embed(title = 'Players Online',description = "```yaml\n" + "\n".join([player.name for player in status.players.sample]) + "\n```",colour=discord.Color.from_rgb(21,244,238))
-            except:
-                SEmbed = discord.Embed(description = "```diff\n-NO PLAYERS ONLINE-\n```",colour=discord.Color.from_rgb(255,0,0))
-            
+            SEmbed = discord.Embed(description = "```diff\n-NO PLAYERS ONLINE-\n```",colour=discord.Color.from_rgb(255,0,0))
         await ctx.send(embed=SEmbed)
