@@ -1,4 +1,5 @@
 from redbot.core import commands
+import discord
 from mcstatus import JavaServer
 
 class MCStatusCheck(commands.Cog):
